@@ -10,7 +10,7 @@ on:
     types: [my-event]
 
 jobs:
-  deploy:
+  myEvent:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.ref }}
-      - run: echo ${{ github.event.client_payload.sha }}
+      - run: echo hello ${{ github.event.client_payload.sha }}
       # Add more steps as needed, such as building and deploying your application
       - name: Trigger deployment
         run: |
