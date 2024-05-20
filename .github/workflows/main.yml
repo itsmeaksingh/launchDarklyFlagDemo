@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   # Add a new event type to trigger the workflow when a LaunchDarkly webhook is received
   repository_dispatch:
-    types: [created, edited, updated, answered]
+    types: [my-event]
 
 jobs:
   deploy:
@@ -15,9 +15,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        
+      - name: Repository Dispatch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - run: echo ${{ github.event.client_payload.sha }}
       # Add more steps as needed, such as building and deploying your application
-
       - name: Trigger deployment
         run: |
           # Your deployment script/command here
