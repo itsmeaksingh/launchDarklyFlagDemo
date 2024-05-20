@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   # Add a new event type to trigger the workflow when a LaunchDarkly webhook is received
   repository_dispatch:
-    types: [launchdarkly_flag_change]
+    types: [created, edited, updated, answered]
 
 jobs:
   deploy:
