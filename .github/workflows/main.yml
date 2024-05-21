@@ -1,24 +1,21 @@
-name: LaunchDarkly Integration
+name: LaunchDarkly Webhook
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  # Add a new event type to trigger the workflow when a LaunchDarkly webhook is received
-  repository_dispatch:
-    types: [launchdarkly_flag_change]
 
 jobs:
-  deploy:
+  launchdarkly-webhook:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Print Hello World
+        if: github.event_name == 'launchdarkly_webhook'
+        run: echo "hello world"
 
-      # Add more steps as needed, such as building and deploying your application
-
-      - name: Trigger deployment
+      - name: Define Webhook Endpoint
+        if: github.event_name == 'launchdarkly_webhook'
         run: |
-          # Your deployment script/command here
-          echo "Hello World Main!!"
+          # Define a simple HTTP server using Python
+          echo "hello world endpoint"
