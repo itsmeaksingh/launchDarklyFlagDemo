@@ -1,0 +1,15 @@
+name: LaunchDarkly Webhook
+
+on:
+  push:  # This can be any event that triggers the workflow
+    branches:
+      - main
+
+jobs:
+  launchdarkly-webhook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Hello World
+        if: github.event_name == 'launchdarkly_webhook'  # Check if the event is from LaunchDarkly
+        run: echo "hello world"
