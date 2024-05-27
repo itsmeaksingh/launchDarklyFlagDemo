@@ -1,3 +1,5 @@
+name: LaunchDarkly Integration
+
 on:
   push:
     branches:
